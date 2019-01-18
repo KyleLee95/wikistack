@@ -26,6 +26,22 @@ const Page = db.define("page", {
   }
 });
 
+Page.beforeValidate(page => {
+  // let sluggified = req.body.title;
+  // let newSlug = "";
+  // const sluggify = sluggified => {
+  let regex = /\s+/g;
+  let regex2 = /\W/g;
+  // console.log(sluggified.replace(regex, "_"));
+  console.log(page.slug);
+  if (!page.slug) {
+    console.log(page.slug);
+    page.slug = page.title.replace(regex, "_").replace(regex2, "");
+  }
+  // sluggify();
+  // };
+});
+
 const User = db.define("user", {
   name: {
     type: Sequelize.STRING,
