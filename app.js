@@ -5,8 +5,8 @@ const bodyParser = require("body-parser");
 const main = require("./views/main");
 const layout = require("./views/layout");
 const { db } = require("./models/");
-const wikiRouter = require('./routes/wiki');
-const userRouter = require('./routes/user');
+const wikiRouter = require("./routes/wiki");
+const userRouter = require("./routes/user");
 
 //when using models.db in init
 // const models = require("./models");
@@ -14,11 +14,11 @@ const userRouter = require('./routes/user');
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname + "/public"));
-app.use('/wiki', wikiRouter);
-app.use('/user', userRouter);
+app.use("/wiki", wikiRouter);
+app.use("/user", userRouter);
 
 app.get("/", (req, res, next) => {
-  res.send(layout(""));
+  res.redirect("/wiki");
 });
 
 db.authenticate().then(() => {
